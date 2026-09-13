@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEONEMATH 수강 안내</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#FBF7F1;
+    --bg-panel:#F3E8D8;
+    --bg-panel-2:#ECDDC6;
+    --chalk:#3B2E20;
+    --chalk-dim:#6E5A44;
+    --chalk-faint:#9C8768;
+    --gold:#A9673A;
+    --gold-dim:#8B5330;
+    --red:#A8462F;
+    --red-dim:#D9B69A;
+    --grid-line:rgba(59,46,32,0.06);
+    --grid-line-strong:rgba(59,46,32,0.14);
+    --serif:'Noto Serif KR', serif;
+    --sans:'IBM Plex Sans KR', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+    --max:920px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg-deep);
+    color:var(--chalk);
+    font-family:var(--sans);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 72px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--grid-line-strong);
+  }
+
+  .hero__inner{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:48px;
+  }
+
+  .hero__mark{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.02em;
+    color:var(--gold);
+    margin-bottom:28px;
+  }
+
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:clamp(34px, 5.4vw, 58px);
+    line-height:1.28;
+    color:var(--chalk);
+    max-width:11.5em;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.75s ease-out 0.1s forwards;
+  }
+
+  .hero p.lead{
+    margin-top:22px;
+    font-size:17px;
+    color:var(--chalk-dim);
+    max-width:34em;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.75s ease-out 0.28s forwards;
+  }
+
+  .hero__graph{
+    flex:0 0 auto;
+    width:260px;
+    opacity:0;
+    animation:fadein 1s ease-out 0.5s forwards;
+  }
+
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+  @keyframes fadein{ to{ opacity:1; } }
+
+  .hero__cta{
+    margin-top:36px;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:20px;
+    opacity:0;
+    transform:translateY(14px);
+    animation:rise 0.75s ease-out 0.42s forwards;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--gold);
+    color:#FBF7F1;
+    font-weight:600;
+    font-size:15px;
+    padding:13px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .btn:hover{ background:#8B5330; transform:translateY(-1px); }
+  .btn:focus-visible{ outline:2px solid var(--chalk); outline-offset:3px; }
+
+  .hero__contact{
+    font-family:var(--mono);
+    font-size:13.5px;
+    color:var(--chalk-dim);
+  }
+  .hero__contact strong{ color:var(--chalk); font-weight:500; }
+
+  /* ---------- SECTION SHARED ---------- */
+  section.block{
+    padding:64px 0;
+    border-bottom:1px solid var(--grid-line-strong);
+  }
+
+  .block__head{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    margin-bottom:8px;
+  }
+
+  .block__mark{ color:var(--gold); font-size:18px; line-height:1; }
+
+  .block h2{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(22px, 3vw, 28px);
+    color:var(--chalk);
+  }
+
+  .block__intro{
+    color:var(--chalk-dim);
+    font-size:15px;
+    max-width:38em;
+    margin:14px 0 36px;
+  }
+
+  .acct-line{
+    margin:16px 0 32px;
+    font-size:15px;
+    color:var(--chalk-dim);
+  }
+
+  /* ---------- FEE TABLE ---------- */
+  .fee-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:15px;
+  }
+  .fee-table th, .fee-table td{
+    padding:16px 14px;
+    text-align:left;
+    border-bottom:1px solid var(--grid-line-strong);
+  }
+  .fee-table th{
+    font-weight:500;
+    color:var(--chalk-faint);
+    font-size:13px;
+    letter-spacing:0.01em;
+  }
+  .fee-table td.num{ font-family:var(--mono); color:var(--chalk); }
+  .fee-table td.grade{ font-weight:600; color:var(--gold); }
+  .fee-table td.price{ font-family:var(--mono); font-weight:700; color:var(--chalk); }
+  .fee-table tbody tr:last-child td{ border-bottom:none; }
+
+  .fee-notes{
+    margin-top:32px;
+    padding-top:28px;
+    border-top:1px dashed var(--grid-line-strong);
+    display:grid;
+    gap:12px;
+  }
+  .fee-notes li{
+    list-style:none;
+    display:flex;
+    gap:12px;
+    color:var(--chalk-dim);
+    font-size:14.5px;
+  }
+  .fee-notes li::before{
+    content:"·";
+    color:var(--gold-dim);
+    font-weight:700;
+  }
+  .fee-notes .acct, .acct-line .acct{
+    font-family:var(--mono);
+    font-weight:700;
+    color:var(--chalk);
+    background:var(--bg-panel-2);
+    padding:2px 7px;
+    border-radius:2px;
+    font-size:14px;
+  }
+
+  /* ---------- MAKEUP LIST ---------- */
+  .rule-list{
+    display:grid;
+    gap:0;
+  }
+  .rule-list li{
+    list-style:none;
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:16px;
+    padding:18px 0;
+    border-bottom:1px solid var(--grid-line);
+    font-size:15px;
+    color:var(--chalk-dim);
+  }
+  .rule-list li:last-child{ border-bottom:none; }
+  .rule-list .n{
+    font-family:var(--mono);
+    color:var(--gold);
+    font-size:14px;
+  }
+  .rule-list li strong{ color:var(--chalk); font-weight:500; }
+
+  /* ---------- WARNING BLOCK ---------- */
+  .warn{
+    background:var(--bg-panel);
+    border:1px solid var(--red-dim);
+    border-radius:4px;
+    padding:36px 32px;
+  }
+  .warn .block__mark{ color:var(--red); }
+  .warn h2{ color:var(--chalk); }
+  .warn .block__intro{ color:var(--chalk-dim); }
+  .warn .rule-list li{ border-bottom-color:rgba(193,84,63,0.18); color:var(--chalk-dim); }
+  .warn .rule-list .n{ color:var(--red); }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    padding:72px 0 96px;
+    text-align:left;
+  }
+  .closing h2{
+    font-family:var(--serif);
+    font-weight:900;
+    font-size:clamp(26px, 4vw, 38px);
+    max-width:12em;
+    line-height:1.35;
+    margin-bottom:20px;
+  }
+  .closing p{
+    color:var(--chalk-dim);
+    max-width:32em;
+    margin-bottom:32px;
+    font-size:15.5px;
+  }
+  .closing__meta{
+    margin-top:44px;
+    padding-top:28px;
+    border-top:1px solid var(--grid-line-strong);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:16px;
+    font-size:13.5px;
+    color:var(--chalk-faint);
+    font-family:var(--mono);
+  }
+  .closing__meta strong{ color:var(--chalk-dim); font-weight:500; }
+
+  @media (max-width:720px){
+    .hero__inner{ flex-direction:column; align-items:flex-start; }
+    .hero__graph{ width:200px; align-self:center; }
+    .fee-table{ font-size:14px; }
+    .fee-table th, .fee-table td{ padding:12px 8px; }
+    .closing__meta{ flex-direction:column; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero h1, .hero p.lead, .hero__cta, .hero__graph{ animation:none; opacity:1; transform:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero__inner">
+    <div>
+      <div class="hero__mark">THEONEMATH · 더원매스</div>
+      <h1>한 문제를<br>제대로 이해할 때까지</h1>
+      <p class="lead">더원매스는 초·중·고 학생 각자의 속도에 맞춰, 풀이를 외우기 전에 원리를 짚어드리는 수학 전문 교습소입니다.</p>
+      <div class="hero__cta">
+        <div class="hero__contact">
+          <strong>010-5706-3824</strong><br>
+          충남 서산시 예천7로 4-11, 202호
+        </div>
+      </div>
+    </div>
+    <svg class="hero__graph" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="20" y1="190" x2="210" y2="190" stroke="#B8A488" stroke-width="1"/>
+      <line x1="20" y1="190" x2="20" y2="15" stroke="#B8A488" stroke-width="1"/>
+      <path d="M20 185 C 70 182, 110 165, 140 120 C 165 82, 180 45, 205 25" stroke="#A9673A" stroke-width="2.5" fill="none"/>
+      <circle cx="140" cy="120" r="3.5" fill="#A9673A"/>
+      <circle cx="205" cy="25" r="3.5" fill="#A9673A"/>
+      <circle cx="20" cy="185" r="3.5" fill="#3B2E20"/>
+    </svg>
+  </div>
+</header>
+
+<main>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block__head">
+        <span class="block__mark">■</span>
+        <h2>교육비 안내</h2>
+      </div>
+
+      <p class="acct-line">입금 계좌 <span class="acct">352-0777-8529-93 (농협, 예금주 이하나)</span></p>
+
+      <table class="fee-table">
+        <thead>
+          <tr>
+            <th>학년</th>
+            <th>수업 시간</th>
+            <th>수업 횟수</th>
+            <th>월 수강료</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="grade">초등</td>
+            <td class="num">80분</td>
+            <td class="num">주 3회</td>
+            <td class="price">280,000원</td>
+          </tr>
+          <tr>
+            <td class="grade">중등</td>
+            <td class="num">100분</td>
+            <td class="num">주 3회</td>
+            <td class="price">350,000원</td>
+          </tr>
+          <tr>
+            <td class="grade">고등</td>
+            <td class="num">120분</td>
+            <td class="num">주 3회</td>
+            <td class="price">450,000원</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="fee-notes" style="margin-top:24px;">
+        <li>수강 기간은 매달 1일부터 말일까지이며, 한 달 수업은 4주를 기준으로 진행됩니다.</li>
+        <li>수강료는 전달 25일부터 말일 사이에 입금해 주세요. 입금이 확인되면 다음 달 수강 신청으로 처리됩니다.</li>
+        <li>교육비는 학년이 아닌 실제 수강하는 과정을 기준으로 적용됩니다. (예: 초등학생이 중등 과정을 수강하면 중등 수강료, 초등학생 또는 중학생이 고등 과정을 수강하면 고등 수강료가 적용됩니다.)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block__head">
+        <span class="block__mark">■</span>
+        <h2>보강 · 환불 규정</h2>
+      </div>
+      <p class="block__intro">보강은 학습 진행상 필요하다고 판단되는 경우에 한해 티칭자의 판단으로 진행하며, 정규수업에 영향을 주지 않는 것을 원칙으로 합니다. 별도의 개별 보강은 원칙적으로 실시하지 않습니다.</p>
+
+      <ol class="rule-list">
+        <li><span class="n">1</span><span>법정 공휴일은 수업이 없으며 보강하지 않습니다.</span></li>
+        <li><span class="n">2</span><span>전염성 질환이나 입원 또는 수술, 학교 행사(수련회)나 사전에 예고된 결석은 협의하여 보강합니다.</span></li>
+        <li><span class="n">3</span><span>학생 개인 사정으로 결석한 경우에는 보강이 없습니다.</span></li>
+        <li><span class="n">4</span><span>결석 시 미리 말씀해주세요. 당일 결석 통보 시 보강이 불가합니다.</span></li>
+        <li><span class="n">5</span><span>여름·겨울방학이 있습니다.</span></li>
+        <li><span class="n">6</span><span>환불 규정은 학원법에 의거하여 반환됩니다. (수업 1/3~1/2 경과 전: 총 수강료의 1/2 환불 · 1/2 경과 후: 반환 불가)</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="warn">
+        <div class="block__head">
+          <span class="block__mark">■</span>
+          <h2>강제 퇴원 규정</h2>
+        </div>
+        <p class="block__intro">즐겁게 함께 공부하기 위해, 아래 사항은 꼭 지켜주시길 부탁드립니다.</p>
+
+        <ol class="rule-list">
+          <li><span class="n">1</span><span>무단 결석이 3회 이상 누적된 경우</span></li>
+          <li><span class="n">2</span><span>원 내에서 다툼, 욕설, 거짓말이 있었던 경우</span></li>
+          <li><span class="n">3</span><span>지속적으로 떠들거나 돌아다니며 수업을 방해하는 경우</span></li>
+          <li><span class="n">4</span><span>수업 태도나 숙제 불성실로 경고를 3회 받은 경우</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
